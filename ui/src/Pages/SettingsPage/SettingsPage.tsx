@@ -6,7 +6,7 @@ import Layout from '../../components/layout/Layout'
 import ScannerSection from './ScannerSection'
 import UserPreferences from './UserPreferences'
 import UsersTable from './Users/UsersTable'
-import VersionInfo from './VersionInfo'
+
 import classNames from 'classnames'
 
 type SectionTitleProps = {
@@ -48,7 +48,7 @@ const SettingsPage = () => {
           <UsersTable />
         </>
       )}
-      <VersionInfo />
+
     </Layout>
   )
 }
