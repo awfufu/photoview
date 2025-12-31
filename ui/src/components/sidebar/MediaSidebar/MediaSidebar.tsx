@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { authToken } from '../../../helpers/authentication'
 import { isNil } from '../../../helpers/utils'
 import { MediaType } from '../../../__generated__/globalTypes'
-import { SidebarFacesOverlay } from '../../facesOverlay/FacesOverlay'
 import { SidebarContext } from '../Sidebar'
 import {
   ProtectedImage,
@@ -19,14 +18,12 @@ import SidebarMediaDownload from '../SidebarDownloadMedia'
 import SidebarHeader from '../SidebarHeader'
 import { sidebarDownloadQuery_media_downloads } from '../__generated__/sidebarDownloadQuery'
 import ExifDetails from './MediaSidebarExif'
-import MediaSidebarPeople from './MediaSidebarPeople'
 import MediaSidebarMap from './MediaSidebarMap'
 import {
   sidebarMediaQuery,
   sidebarMediaQueryVariables,
   sidebarMediaQuery_media_album_path,
   sidebarMediaQuery_media_exif,
-  sidebarMediaQuery_media_faces,
   sidebarMediaQuery_media_thumbnail,
   sidebarMediaQuery_media_videoMetadata,
 } from './__generated__/sidebarMediaQuery'
@@ -90,29 +87,6 @@ export const SIDEBAR_MEDIA_QUERY = gql`
           title
         }
       }
-      faces {
-        id
-        rectangle {
-          minX
-          maxX
-          minY
-          maxY
-        }
-        faceGroup {
-          id
-          label
-          imageFaceCount
-        }
-        media {
-          id
-          title
-          thumbnail {
-            url
-            width
-            height
-          }
-        }
-      }
     }
   }
 `
@@ -163,7 +137,7 @@ type SidebarContentProps = {
 }
 
 const SidebarContent = ({ media, hidePreview }: SidebarContentProps) => {
-	const { updateSidebar } = useContext(SidebarContext)
+  const { updateSidebar } = useContext(SidebarContext)
   const { t } = useTranslation()
   let previewImage = null
   if (media.highRes) previewImage = media.highRes
@@ -192,7 +166,7 @@ const SidebarContent = ({ media, hidePreview }: SidebarContentProps) => {
         <Link
           className="text-blue-900 dark:text-blue-200 hover:underline"
           to={`/album/${album.id}`}
-					onClick={() => updateSidebar(null)}
+          onClick={() => updateSidebar(null)}
         >
           {album.title}
         </Link>
@@ -222,13 +196,11 @@ const SidebarContent = ({ media, hidePreview }: SidebarContentProps) => {
               previewImage={previewImage || undefined}
               media={media}
             />
-            <SidebarFacesOverlay media={media} />
           </div>
         )}
       </div>
       <ExifDetails media={media} />
       {albumPath}
-      <MediaSidebarPeople media={media} />
       {sidebarMap}
       <SidebarMediaDownload media={media} />
       <SidebarPhotoShare id={media.id} />
@@ -259,7 +231,6 @@ export interface MediaSidebarMedia {
   }
   videoMetadata?: sidebarMediaQuery_media_videoMetadata | null
   exif?: sidebarMediaQuery_media_exif | null
-  faces?: sidebarMediaQuery_media_faces[]
   downloads?: sidebarDownloadQuery_media_downloads[]
   album?: {
     __typename: 'Album'

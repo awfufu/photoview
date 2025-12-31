@@ -1,7 +1,6 @@
 package scanner_test
 
 import (
-	"fmt"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -9,7 +8,6 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/photoview/photoview/api/graphql/models"
-	"github.com/photoview/photoview/api/scanner/face_detection"
 	"github.com/photoview/photoview/api/test_utils"
 	scanner_utils "github.com/photoview/photoview/api/test_utils/scanner"
 )
@@ -83,19 +81,6 @@ func TestFullScan(t *testing.T) {
 		"wmv.wmv",
 	}
 
-	wantFaceGroups := [][]string{
-		{"boy1.jpg", "boy2.jpg"},
-		{"girl_black_hair2.jpg"},
-		{"girl_blond1.jpg", "girl_blond2.jpg", "girl_blond3.jpg"},
-	}
-
-	for i := range wantFaceGroups {
-		slices.Sort(wantFaceGroups[i])
-	}
-	slices.SortFunc(wantFaceGroups, func(a, b []string) int {
-		return strings.Compare(fmt.Sprint(a), fmt.Sprint(b))
-	})
-
 	if err := db.Save(&rootAlbum).Error; err != nil {
 		t.Fatal("create root album error:", err)
 	}
@@ -104,8 +89,8 @@ func TestFullScan(t *testing.T) {
 		t.Fatal("bind root album error:", err)
 	}
 
-	if err := face_detection.InitializeFaceDetector(db); err != nil {
-		t.Fatal("initalize face detector error:", err)
+	if err := db.Model(user).Association("Albums").Append(&rootAlbum); err != nil {
+		t.Fatal("bind root album error:", err)
 	}
 
 	scanner_utils.RunScannerOnUser(t, db, user)
@@ -182,36 +167,6 @@ func TestFullScan(t *testing.T) {
 		}
 	})
 
-	t.Run("CheckFaceGroup", func(t *testing.T) {
-		var allFaceGroups []*models.FaceGroup
-		if err := db.Find(&allFaceGroups).Error; err != nil {
-			t.Fatal("get face groups error:", err)
-		}
-
-		if got, want := len(allFaceGroups), len(wantFaceGroups); got != want {
-			t.Errorf("len(allFaceGroups) = %d, want: %d", got, want)
-		}
-	})
-
-	t.Run("CheckFaces", func(t *testing.T) {
-		var allImageFaces []*models.ImageFace
-		if err := db.Find(&allImageFaces).Error; err != nil {
-			t.Fatal("get face images error:", err)
-		}
-
-		for _, face := range allImageFaces {
-			if err := face.FillMedia(db); err != nil {
-				t.Fatalf("fill media for face %v error: %v", face, err)
-			}
-		}
-
-		got := groupMediaWithFaces(allImageFaces)
-
-		if diff := cmp.Diff(got, wantFaceGroups); diff != "" {
-			t.Errorf("all media diff (-got, +want):\n%s", diff)
-		}
-	})
-
 	t.Run("CheckPhotosOrientation", func(t *testing.T) {
 		photoFiles := []string{
 			"left_arrow_normal_web.jpg",
@@ -261,28 +216,6 @@ func equalNameWithoutSuffix(a, b string) bool {
 	}
 
 	return true
-}
-
-func groupMediaWithFaces(medias []*models.ImageFace) [][]string {
-	grouped := make(map[int][]string)
-
-	for _, media := range medias {
-		group := grouped[media.FaceGroupID]
-		group = append(group, media.Media.Title)
-		grouped[media.FaceGroupID] = group
-	}
-
-	ret := make([][]string, 0, len(grouped))
-	for _, medias := range grouped {
-		slices.Sort(medias)
-		ret = append(ret, medias)
-	}
-
-	slices.SortFunc(ret, func(a, b []string) int {
-		return strings.Compare(fmt.Sprint(a), fmt.Sprint(b))
-	})
-
-	return ret
 }
 
 func copyFilelistWithJpgExt(list []string) []string {

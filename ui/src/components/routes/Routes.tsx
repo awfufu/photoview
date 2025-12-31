@@ -37,18 +37,6 @@ const SettingsPage = React.lazy(
   () => import('../../Pages/SettingsPage/SettingsPage')
 )
 
-const PeoplePage = React.lazy(() =>
-  import('../../Pages/PeoplePage/PeoplePage').then(x => ({
-    default: x.PeoplePage,
-  }))
-)
-
-const PersonPage = React.lazy(() =>
-  import('../../Pages/PeoplePage/PeoplePage').then(x => ({
-    default: x.PersonPage,
-  }))
-)
-
 const Routes = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -97,20 +85,6 @@ const Routes = () => {
     {
       path: '/settings',
       element: authorized(<SettingsPage />),
-    },
-    {
-      path: '/people',
-      element: authorized(<Outlet />),
-      children: [
-        {
-          path: ':person',
-          element: <PersonPage />,
-        },
-        {
-          index: true,
-          element: <PeoplePage />,
-        },
-      ],
     },
     {
       // for backwards-compatibility

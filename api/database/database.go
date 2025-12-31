@@ -8,47 +8,14 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/photoview/photoview/api/database/drivers"
 	"github.com/photoview/photoview/api/database/migrations"
 	"github.com/photoview/photoview/api/graphql/models"
 	"github.com/photoview/photoview/api/utils"
 
-	"github.com/go-sql-driver/mysql"
-	gorm_mysql "gorm.io/driver/mysql"
-	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
-
-func GetMysqlAddress(addressString string) (string, error) {
-	if addressString == "" {
-		return "", fmt.Errorf("Environment variable %s missing, exiting", utils.EnvMysqlURL.GetName())
-	}
-
-	config, err := mysql.ParseDSN(addressString)
-	if err != nil {
-		return "", fmt.Errorf("could not parse mysql url: %w", err)
-	}
-
-	config.MultiStatements = true
-	config.ParseTime = true
-
-	return config.FormatDSN(), nil
-}
-
-func GetPostgresAddress(addressString string) (*url.URL, error) {
-	if addressString == "" {
-		return nil, fmt.Errorf("Environment variable %s missing, exiting", utils.EnvPostgresURL.GetName())
-	}
-
-	address, err := url.Parse(addressString)
-	if err != nil {
-		return nil, fmt.Errorf("could not parse postgres url: %w", err)
-	}
-
-	return address, nil
-}
 
 func GetSqliteAddress(path string) (*url.URL, error) {
 	if path == "" {
@@ -75,31 +42,13 @@ func GetSqliteAddress(path string) (*url.URL, error) {
 }
 
 func ConfigureDatabase(config *gorm.Config) (*gorm.DB, error) {
-	var databaseDialect gorm.Dialector
-	driver := drivers.DatabaseDriverFromEnv()
-	log.Printf("Utilizing %s database driver based on environment variables", driver)
-
-	switch driver {
-	case drivers.MYSQL:
-		mysqlAddress, err := GetMysqlAddress(utils.EnvMysqlURL.GetValue())
-		if err != nil {
-			return nil, err
-		}
-		databaseDialect = gorm_mysql.Open(mysqlAddress)
-	case drivers.SQLITE:
-		sqliteAddress, err := GetSqliteAddress(utils.EnvSqlitePath.GetValue())
-		if err != nil {
-			return nil, err
-		}
-		databaseDialect = sqlite.Open(sqliteAddress.String())
-
-	case drivers.POSTGRES:
-		postgresAddress, err := GetPostgresAddress(utils.EnvPostgresURL.GetValue())
-		if err != nil {
-			return nil, err
-		}
-		databaseDialect = postgres.Open(postgresAddress.String())
+	sqliteAddress, err := GetSqliteAddress(utils.EnvSqlitePath.GetValue())
+	if err != nil {
+		return nil, err
 	}
+	
+	log.Printf("Utilizing sqlite database driver")
+	databaseDialect := sqlite.Open(sqliteAddress.String())
 
 	db, err := gorm.Open(databaseDialect, config)
 	if err != nil {
@@ -164,10 +113,6 @@ var database_models []interface{} = []interface{}{
 	&models.UserMediaData{},
 	&models.UserAlbums{},
 	&models.UserPreferences{},
-
-	// Face detection
-	&models.FaceGroup{},
-	&models.ImageFace{},
 }
 
 func MigrateDatabase(db *gorm.DB) error {

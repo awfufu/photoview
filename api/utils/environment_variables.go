@@ -27,10 +27,7 @@ const (
 
 // Database related
 const (
-	EnvDatabaseDriver EnvironmentVariable = "PHOTOVIEW_DATABASE_DRIVER"
-	EnvMysqlURL       EnvironmentVariable = "PHOTOVIEW_MYSQL_URL"
-	EnvPostgresURL    EnvironmentVariable = "PHOTOVIEW_POSTGRES_URL"
-	EnvSqlitePath     EnvironmentVariable = "PHOTOVIEW_SQLITE_PATH"
+	EnvSqlitePath EnvironmentVariable = "PHOTOVIEW_SQLITE_PATH"
 )
 
 // Feature related

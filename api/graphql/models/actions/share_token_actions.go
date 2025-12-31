@@ -3,7 +3,6 @@ package actions
 import (
 	"time"
 
-	"github.com/photoview/photoview/api/database/drivers"
 	"github.com/photoview/photoview/api/graphql/auth"
 	"github.com/photoview/photoview/api/graphql/models"
 	"github.com/photoview/photoview/api/utils"
@@ -17,12 +16,7 @@ func AddMediaShare(db *gorm.DB, user *models.User, mediaID int, expire *time.Tim
 
 	var media models.Media
 
-	var query string
-	if drivers.POSTGRES.MatchDatabase(db) {
-		query = "EXISTS (SELECT * FROM user_albums WHERE user_albums.album_id = \"Album\".id AND user_albums.user_id = ?)"
-	} else {
-		query = "EXISTS (SELECT * FROM user_albums WHERE user_albums.album_id = Album.id AND user_albums.user_id = ?)"
-	}
+	query := "EXISTS (SELECT * FROM user_albums WHERE user_albums.album_id = Album.id AND user_albums.user_id = ?)"
 
 	err := db.Joins("Album").
 		Where(query, user.ID).
@@ -151,12 +145,7 @@ func hashSharePassword(password *string) (*string, error) {
 
 func getUserToken(db *gorm.DB, userID int, tokenValue string) (*models.ShareToken, error) {
 
-	var query string
-	if drivers.POSTGRES.MatchDatabase(db) {
-		query = "\"Owner\".id = ? OR \"Owner\".admin = TRUE"
-	} else {
-		query = "Owner.id = ? OR Owner.admin = TRUE"
-	}
+	query := "Owner.id = ? OR Owner.admin = TRUE"
 
 	var token models.ShareToken
 	err := db.Where("share_tokens.value = ?", tokenValue).Joins("Owner").Where(query, userID).First(&token).Error

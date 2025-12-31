@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/photoview/photoview/api/database/drivers"
 	"github.com/photoview/photoview/api/graphql/models"
 	"github.com/photoview/photoview/api/scanner/periodic_scanner"
 	"github.com/photoview/photoview/api/scanner/scanner_queue"
@@ -84,7 +83,7 @@ func (r *mutationResolver) SetScannerConcurrentWorkers(ctx context.Context, work
 		return 0, errors.New("concurrent workers must at least be 1")
 	}
 
-	if workers > 1 && drivers.DatabaseDriverFromEnv() == drivers.SQLITE {
+	if workers > 1 {
 		return 0, errors.New("multiple workers not supported for SQLite databases")
 	}
 

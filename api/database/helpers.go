@@ -2,9 +2,7 @@ package database
 
 import (
 	"fmt"
-	"log"
 
-	"github.com/photoview/photoview/api/database/drivers"
 	"gorm.io/gorm"
 )
 
@@ -23,24 +21,20 @@ func DateExtract(db *gorm.DB, component DateComponent, attribute string) string 
 
 	var result string
 
-	switch drivers.GetDatabaseDriverType(db) {
-	case drivers.MYSQL, drivers.POSTGRES:
-		result = fmt.Sprintf("EXTRACT(%s FROM %s)", component, attribute)
-	case drivers.SQLITE:
-		var sqliteFormatted string
-		switch component {
-		case DateCompYear:
-			sqliteFormatted = "%Y"
-		case DateCompMonth:
-			sqliteFormatted = "%m"
-		case DateCompDay:
-			sqliteFormatted = "%d"
-		}
+	// drivers package is no longer needed here if we only support SQLite
+	// but I need to check imports.
 
-		result = fmt.Sprintf("CAST(strftime('%s', %s) AS INTEGER)", sqliteFormatted, attribute)
-	default:
-		log.Panicf("unsupported database backend: %s", drivers.GetDatabaseDriverType(db))
+	var sqliteFormatted string
+	switch component {
+	case DateCompYear:
+		sqliteFormatted = "%Y"
+	case DateCompMonth:
+		sqliteFormatted = "%m"
+	case DateCompDay:
+		sqliteFormatted = "%d"
 	}
+
+	result = fmt.Sprintf("CAST(strftime('%s', %s) AS INTEGER)", sqliteFormatted, attribute)
 
 	return result
 }

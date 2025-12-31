@@ -21,7 +21,6 @@ import (
 	graphql_endpoint "github.com/photoview/photoview/api/graphql/endpoint"
 	"github.com/photoview/photoview/api/routes"
 	"github.com/photoview/photoview/api/scanner/externaltools/exif"
-	"github.com/photoview/photoview/api/scanner/face_detection"
 	"github.com/photoview/photoview/api/scanner/media_encoding/executable_worker"
 	"github.com/photoview/photoview/api/scanner/periodic_scanner"
 	"github.com/photoview/photoview/api/scanner/scanner_queue"
@@ -65,10 +64,6 @@ func main() {
 
 	if err := periodic_scanner.InitializePeriodicScanner(db); err != nil {
 		log.Panicf("Could not initialize periodic scanner: %s", err)
-	}
-
-	if err := face_detection.InitializeFaceDetector(db); err != nil {
-		log.Panicf("Could not initialize face detector: %s\n", err)
 	}
 
 	rootRouter := mux.NewRouter()

@@ -14,7 +14,6 @@ import (
 	"github.com/photoview/photoview/api/graphql/auth"
 	"github.com/photoview/photoview/api/graphql/models"
 	"github.com/photoview/photoview/api/graphql/models/actions"
-	"github.com/photoview/photoview/api/scanner/face_detection"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
@@ -127,24 +126,6 @@ func (r *mediaResolver) Downloads(ctx context.Context, obj *models.Media) ([]*mo
 	}
 
 	return downloads, nil
-}
-
-// Faces is the resolver for the faces field.
-func (r *mediaResolver) Faces(ctx context.Context, obj *models.Media) ([]*models.ImageFace, error) {
-	if face_detection.GlobalFaceDetector == nil {
-		return []*models.ImageFace{}, nil
-	}
-
-	if obj.Faces != nil {
-		return obj.Faces, nil
-	}
-
-	var faces []*models.ImageFace
-	if err := r.DB(ctx).Model(obj).Association("Faces").Find(&faces); err != nil {
-		return nil, err
-	}
-
-	return faces, nil
 }
 
 // FavoriteMedia is the resolver for the favoriteMedia field.

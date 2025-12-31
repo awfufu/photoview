@@ -7,7 +7,6 @@ import (
 
 	"github.com/otiai10/copy"
 	"github.com/photoview/photoview/api/graphql/models"
-	"github.com/photoview/photoview/api/scanner/face_detection"
 	"github.com/photoview/photoview/api/test_utils"
 	scanner_utils "github.com/photoview/photoview/api/test_utils/scanner"
 	"github.com/stretchr/testify/assert"
@@ -20,10 +19,6 @@ func TestMain(m *testing.M) {
 func TestCleanupMedia(t *testing.T) {
 	test_utils.FilesystemTest(t)
 	db := test_utils.DatabaseTest(t)
-
-	if !assert.NoError(t, face_detection.InitializeFaceDetector(db)) {
-		return
-	}
 
 	testDir := t.TempDir()
 	assert.NoError(t, copy.Copy("../../test_media/library", testDir))

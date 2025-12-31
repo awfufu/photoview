@@ -104,9 +104,8 @@ const linkError = onError(({ graphQLErrors, networkError }) => {
     } else if (errors.length > 1) {
       errorMessages.push({
         header: 'Multiple server errors',
-        content: `Received ${
-          graphQLErrors?.length || 0
-        } errors from the server. You are being logged out in an attempt to recover.`,
+        content: `Received ${graphQLErrors?.length || 0
+          } errors from the server. You are being logged out in an attempt to recover.`,
       })
     }
   }
@@ -131,21 +130,21 @@ type PaginateCacheType = {
 
 // Modified version of Apollo's offsetLimitPagination()
 const paginateCache = (keyArgs: string[]) =>
-  ({
-    keyArgs,
-    merge(existing, incoming, { args, fieldName }) {
-      const merged = existing ? existing.slice(0) : []
-      if (args?.paginate) {
-        const { offset = 0 } = args.paginate as { offset: number }
-        for (let i = 0; i < incoming.length; ++i) {
-          merged[offset + i] = incoming[i]
-        }
-      } else {
-        throw new Error(`Paginate argument is missing for query: ${fieldName}`)
+({
+  keyArgs,
+  merge(existing, incoming, { args, fieldName }) {
+    const merged = existing ? existing.slice(0) : []
+    if (args?.paginate) {
+      const { offset = 0 } = args.paginate as { offset: number }
+      for (let i = 0; i < incoming.length; ++i) {
+        merged[offset + i] = incoming[i]
       }
-      return merged
-    },
-  } as PaginateCacheType)
+    } else {
+      throw new Error(`Paginate argument is missing for query: ${fieldName}`)
+    }
+    return merged
+  },
+} as PaginateCacheType)
 
 const memoryCache = new InMemoryCache({
   typePolicies: {
@@ -162,15 +161,9 @@ const memoryCache = new InMemoryCache({
         media: paginateCache(['onlyFavorites', 'order']),
       },
     },
-    FaceGroup: {
-      fields: {
-        imageFaces: paginateCache([]),
-      },
-    },
     Query: {
       fields: {
         myTimeline: paginateCache(['onlyFavorites']),
-        myFaceGroups: paginateCache([]),
       },
     },
   },

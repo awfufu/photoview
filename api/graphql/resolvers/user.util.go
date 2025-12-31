@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"github.com/photoview/photoview/api/graphql/models"
-	"github.com/photoview/photoview/api/scanner/face_detection"
 	"github.com/photoview/photoview/api/utils"
 	"gorm.io/gorm"
 )
@@ -40,12 +39,6 @@ func clearCacheAndReloadFaces(db *gorm.DB, deletedAlbumIDs []int) error {
 			cacheAlbumPath := path.Join(utils.MediaCachePath(), strconv.Itoa(id))
 
 			if err := os.RemoveAll(cacheAlbumPath); err != nil {
-				return err
-			}
-		}
-		// Reload faces as media might have been deleted
-		if face_detection.GlobalFaceDetector != nil {
-			if err := face_detection.GlobalFaceDetector.ReloadFacesFromDatabase(db); err != nil {
 				return err
 			}
 		}

@@ -5,7 +5,6 @@ import { authToken } from '../../helpers/authentication'
 import { useTranslation } from 'react-i18next'
 import { mapboxEnabledQuery } from '../../__generated__/mapboxEnabledQuery'
 import { tailwindClassNames } from '../../helpers/utils'
-import { faceDetectionEnabled } from './__generated__/faceDetectionEnabled'
 
 export const MAPBOX_QUERY = gql`
   query mapboxEnabledQuery {
@@ -13,13 +12,7 @@ export const MAPBOX_QUERY = gql`
   }
 `
 
-export const FACE_DETECTION_ENABLED_QUERY = gql`
-  query faceDetectionEnabled {
-    siteInfo {
-      faceDetectionEnabled
-    }
-  }
-`
+
 
 type MenuButtonProps = {
   to: string
@@ -77,13 +70,10 @@ export const MainMenu = () => {
   const mapboxQuery = authToken()
     ? useQuery<mapboxEnabledQuery>(MAPBOX_QUERY)
     : null
-  const faceDetectionEnabledQuery = authToken()
-    ? useQuery<faceDetectionEnabled>(FACE_DETECTION_ENABLED_QUERY)
-    : null
+
 
   const mapboxEnabled = !!mapboxQuery?.data?.mapboxToken
-  const faceDetectionEnabled =
-    !!faceDetectionEnabledQuery?.data?.siteInfo?.faceDetectionEnabled
+
 
   return (
     <div className="fixed w-full bottom-0 lg:bottom-auto lg:top-[84px] z-30 bg-white dark:bg-dark-bg shadow-separator lg:shadow-none lg:w-[240px] lg:ml-8 lg:mr-5 flex-shrink-0">
@@ -129,21 +119,7 @@ export const MainMenu = () => {
             }
           />
         ) : null}
-        {faceDetectionEnabled ? (
-          <MenuButton
-            to="/people"
-            exact
-            label={t('sidemenu.people', 'People')}
-            background="#fbcd78"
-            activeClasses="ring-[#fff7e4] bg-[#fff7e4] dark:ring-[#1a1b13] dark:bg-[#1a1b13]"
-            className="focus:ring-yellow-100 dark:focus:ring-[#8f8c36]"
-            icon={
-              <svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.713873,14.2127622 C17.4283917,14.8986066 18.9087267,16.0457918 20.0014344,17.5008819 C20,19.1568542 18.6568542,20.5 17,20.5 L7,20.5 C5.34314575,20.5 4,19.1568542 4,17.5 L4.09169034,17.3788798 C5.17486154,15.981491 6.62020934,14.878942 8.28693513,14.2120314 C9.30685583,15.018595 10.5972088,15.5 12,15.5 C13.3092718,15.5 14.5205974,15.0806428 15.5069849,14.3689203 L15.713873,14.2127622 L15.713873,14.2127622 Z M12,4 C15.0375661,4 17.5,6.46243388 17.5,9.5 C17.5,12.5375661 15.0375661,15 12,15 C8.96243388,15 6.5,12.5375661 6.5,9.5 C6.5,6.46243388 8.96243388,4 12,4 Z"></path>
-              </svg>
-            }
-          />
-        ) : null}
+
         <MenuSeparator />
         <MenuButton
           to="/settings"

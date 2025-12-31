@@ -3,7 +3,6 @@ package actions
 import (
 	"time"
 
-	"github.com/photoview/photoview/api/database/drivers"
 	"github.com/photoview/photoview/api/graphql/models"
 	"gorm.io/gorm"
 )
@@ -17,27 +16,10 @@ func MyTimeline(db *gorm.DB, user *models.User, paginate *models.Pagination, onl
 		Joins("JOIN albums ON media.album_id = albums.id").
 		Where("albums.id IN (?)", db.Table("user_albums").Select("user_albums.album_id").Where("user_id = ?", user.ID))
 
-	switch drivers.GetDatabaseDriverType(db) {
-	case drivers.POSTGRES:
-		query = query.
-			Order("DATE_TRUNC('year', date_shot) DESC").
-			Order("DATE_TRUNC('month', date_shot) DESC").
-			Order("DATE_TRUNC('day', date_shot) DESC").
-			Order(albumsTitleASC).
-			Order("media.date_shot DESC")
-	case drivers.SQLITE:
-		query = query.
-			Order("strftime('%Y-%m-%d', media.date_shot) DESC"). // convert to YYYY-MM-DD
-			Order(albumsTitleASC).
-			Order("TIME(media.date_shot) DESC")
-	default:
-		query = query.
-			Order("YEAR(media.date_shot) DESC").
-			Order("MONTH(media.date_shot) DESC").
-			Order("DAY(media.date_shot) DESC").
-			Order(albumsTitleASC).
-			Order("TIME(media.date_shot) DESC")
-	}
+	query = query.
+		Order("strftime('%Y-%m-%d', media.date_shot) DESC"). // convert to YYYY-MM-DD
+		Order(albumsTitleASC).
+		Order("TIME(media.date_shot) DESC")
 
 	if fromDate != nil {
 		query = query.Where("media.date_shot < ?", fromDate)

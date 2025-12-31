@@ -98,9 +98,6 @@ type Media {
   shares: [ShareToken!]!
   "A list of different versions of files for this media that can be downloaded by the user"
   downloads: [MediaDownload!]!
-
-  "A list of faces present on the image"
-  faces: [ImageFace!]!
 }
 
 extend type Query {

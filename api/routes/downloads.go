@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
-	"github.com/photoview/photoview/api/database/drivers"
 	"github.com/photoview/photoview/api/graphql/models"
 	"gorm.io/gorm"
 )
@@ -38,11 +37,7 @@ func RegisterDownloadRoutes(db *gorm.DB, router *mux.Router) {
 		}
 
 		var mediaWhereQuery string
-		if drivers.POSTGRES.MatchDatabase(db) {
-			mediaWhereQuery = "\"Media\".album_id = ?"
-		} else {
-			mediaWhereQuery = "Media.album_id = ?"
-		}
+		mediaWhereQuery = "Media.album_id = ?"
 
 		var mediaURLs []*models.MediaURL
 		if err := db.Joins("Media").Where(mediaWhereQuery, album.ID).Where("media_urls.purpose IN (?)", mediaPurposeList).Find(&mediaURLs).Error; err != nil {
