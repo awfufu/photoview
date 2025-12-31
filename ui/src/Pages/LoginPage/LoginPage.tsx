@@ -29,7 +29,7 @@ const LogoHeader = () => {
     <div className="flex justify-center flex-col mb-14 mt-20">
       <img
         className="h-24"
-        src={import.meta.env.BASE_URL + 'photoview-logo.svg'}
+        src={import.meta.env.BASE_URL + 'logo.svg'}
         alt="photoview logo"
       />
       <h1 className="text-3xl text-center mt-4">
@@ -76,7 +76,7 @@ const LoginForm = () => {
     <form
       className="mx-auto max-w-[500px] px-4"
       onSubmit={handleSubmit(onSubmit)}
-      // loading={loading || (data && data.authorizeUser.success)}
+    // loading={loading || (data && data.authorizeUser.success)}
     >
       <TextField
         sizeVariant="big"
