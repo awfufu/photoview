@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useIsAdmin } from '../../components/routes/AuthorizedRoute'
 import Layout from '../../components/layout/Layout'
 import ScannerSection from './ScannerSection'
-import UserPreferences from './UserPreferences'
+
 import UsersTable from './Users/UsersTable'
 
 import classNames from 'classnames'
@@ -41,7 +41,7 @@ const SettingsPage = () => {
 
   return (
     <Layout title={t('title.settings', 'Settings')}>
-      <UserPreferences />
+
       {isAdmin && (
         <>
           <ScannerSection />
