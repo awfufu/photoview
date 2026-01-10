@@ -56,11 +56,11 @@
           "label": "Fotoğraf yolu",
           "placeholder": "/path/to/photos"
         },
-        "submit": "Photoview Kurulumu"
+        "submit": "fufu.pics Kurulumu"
       },
       "title": "İlk Kurulum"
     },
-    "welcome": "Photoview Uygulamasına Hoş Geldiniz"
+    "welcome": "fufu.pics Uygulamasına Hoş Geldiniz"
   },
   "meta": {
     "description": "Kişisel Sunucular için Basit ve Kullanıcı Dostu Fotoğraf Galerisi"
@@ -214,7 +214,7 @@
     },
     "version_info": {
       "build_date_title": "Yapı tarihi",
-      "title": "Photoview Sürümü",
+      "title": "fufu.pics Sürümü",
       "version_title": "Yayın Sürümü"
     }
   },

@@ -60,7 +60,7 @@
       },
       "title": "Configurações Iniciais"
     },
-    "welcome": "Bem-vindo ao Photoview"
+    "welcome": "Bem-vindo ao fufu.pics"
   },
   "meta": {
     "description": "Galeria de fotos simples e fácil de usar para servidores pessoais"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Data da compilação",
-      "title": "Versão do Photoview ",
+      "title": "Versão do fufu.pics ",
       "version_title": "Versão Release"
     }
   },

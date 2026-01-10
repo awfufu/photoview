@@ -56,11 +56,11 @@
           "label": "相片路徑",
           "placeholder": "/path/to/photos"
         },
-        "submit": "設定 Photoview"
+        "submit": "設定 fufu.pics"
       },
       "title": "初始設定"
     },
-    "welcome": "歡迎使用 Photoview"
+    "welcome": "歡迎使用 fufu.pics"
   },
   "meta": {
     "description": "適合個人伺服器使用的簡潔易用相簿系統"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "建置日期",
-      "title": "Photoview 版本",
+      "title": "fufu.pics 版本",
       "version_title": "發行版本"
     }
   },

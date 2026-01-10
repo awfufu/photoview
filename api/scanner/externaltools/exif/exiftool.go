@@ -22,7 +22,7 @@ type ExifParser struct {
 func NewExifParser() (*ExifParser, error) {
 	buf := make([]byte, 256*1024)
 
-	et, err := exiftool.NewExiftool(exiftool.NoPrintConversion(), exiftool.Buffer(buf, 64*1024))
+	et, err := exiftool.NewExiftool(exiftool.NoPrintConversion(), exiftool.Buffer(buf, 2*1024*1024))
 
 	if err != nil {
 		return nil, fmt.Errorf("error initializing ExifTool: %w", err)

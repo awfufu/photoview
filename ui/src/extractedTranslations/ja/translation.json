@@ -56,11 +56,11 @@
           "label": "写真の場所",
           "placeholder": "/path/to/photos"
         },
-        "submit": "Photoview を初期設定"
+        "submit": "fufu.pics を初期設定"
       },
       "title": "初期設定"
     },
-    "welcome": "Photoview へようこそ"
+    "welcome": "fufu.pics へようこそ"
   },
   "meta": {
     "description": "個人サーバー向けのシンプルで使いやすい写真ギャラリー"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "ビルド日",
-      "title": "Photoview バージョン",
+      "title": "fufu.pics バージョン",
       "version_title": "リリースバージョン"
     }
   },

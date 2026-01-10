@@ -56,11 +56,11 @@
           "label": "Sökväg till bild",
           "placeholder": "/sökväg/till/bilder"
         },
-        "submit": "Uppstart Photoview"
+        "submit": "Uppstart fufu.pics"
       },
       "title": "Första Uppstart"
     },
-    "welcome": "Välkommen till Photoview"
+    "welcome": "Välkommen till fufu.pics"
   },
   "meta": {
     "description": "Enkelt och Användarvänligt fotogalleri för personliga servrar"

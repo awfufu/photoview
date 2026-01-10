@@ -7,7 +7,7 @@
     "directory": "ui"
   },
   "license": "GPL-3.0",
-  "description": "UI app for Photoview",
+  "description": "UI app for fufu.pics",
   "scripts": {
     "start": "vite --host=0.0.0.0",
     "mon": "nodemon",

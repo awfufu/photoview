@@ -56,11 +56,11 @@
           "label": "Billedesti",
           "placeholder": "/sti/til/billeder"
         },
-        "submit": "Opsæt Photoview"
+        "submit": "Opsæt fufu.pics"
       },
       "title": "Førstegangsopsætning"
     },
-    "welcome": "Velkommen til Photoview"
+    "welcome": "Velkommen til fufu.pics"
   },
   "meta": {
     "description": "Simpelt og Brugervenligt Photo-galleri for Personlige Servere"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Dato for udgivelse",
-      "title": "Photoview Version",
+      "title": "fufu.pics Version",
       "version_title": "Udgivelsesversion"
     }
   },

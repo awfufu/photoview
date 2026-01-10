@@ -56,11 +56,11 @@
           "label": "Chemin des photos",
           "placeholder": "/chemin/des/photos"
         },
-        "submit": "Configurer Photoview"
+        "submit": "Configurer fufu.pics"
       },
       "title": "Configuration initiale"
     },
-    "welcome": "Bienvenue sur Photoview"
+    "welcome": "Bienvenue sur fufu.pics"
   },
   "meta": {
     "description": "Galerie Photo simple et conviviale pour les Serveurs Personnels"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Date de build",
-      "title": "Photoview Version",
+      "title": "fufu.pics Version",
       "version_title": "Version actuelle"
     }
   },

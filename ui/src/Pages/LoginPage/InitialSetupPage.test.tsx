@@ -30,7 +30,7 @@ describe('Initial setup page', () => {
     expect(screen.getByLabelText('Username')).toBeInTheDocument()
     expect(screen.getByLabelText('Password')).toBeInTheDocument()
     expect(screen.getByLabelText('Photo path')).toBeInTheDocument()
-    expect(screen.getByDisplayValue('Setup Photoview')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('Setup fufu.pics')).toBeInTheDocument()
   })
 
   test('Redirect if auth token is present', async () => {

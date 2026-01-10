@@ -56,11 +56,11 @@
           "label": "Ścieżka zdjęcia",
           "placeholder": "/sciezka/do/zdjec"
         },
-        "submit": "Konfiguracja Photoview"
+        "submit": "Konfiguracja fufu.pics"
       },
       "title": "Konfiguracja początkowa"
     },
-    "welcome": "Witaj w Photoview"
+    "welcome": "Witaj w fufu.pics"
   },
   "meta": {
     "description": "Prosta i przyjazna dla użytkownika galeria zdjęć"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Data kompilacji",
-      "title": "Wersja Photoview",
+      "title": "Wersja fufu.pics",
       "version_title": "Wersja produkcyjna"
     }
   },

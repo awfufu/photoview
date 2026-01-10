@@ -1,6 +1,6 @@
 {
-  "name": "Photoview",
-  "short_name": "Photoview",
+  "name": "fufu.pics",
+  "short_name": "fufu.pics",
   "description": "Photo gallery for self-hosted personal servers",
   "start_url": "/",
   "display": "standalone",

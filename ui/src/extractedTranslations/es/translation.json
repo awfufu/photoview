@@ -56,11 +56,11 @@
           "label": "Ruta de las fotos",
           "placeholder": "/carpeta/de/fotos"
         },
-        "submit": "Configurar Photoview"
+        "submit": "Configurar fufu.pics"
       },
       "title": "Configuración inicial"
     },
-    "welcome": "Bienvenido a Photoview"
+    "welcome": "Bienvenido a fufu.pics"
   },
   "meta": {
     "description": "Una galería de fotos sencilla y fácil de usar para servidores personales"

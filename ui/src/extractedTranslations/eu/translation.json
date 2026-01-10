@@ -56,11 +56,11 @@
           "label": "Argazkien bidea",
           "placeholder": "/argazkiak/dauden/direktorioa"
         },
-        "submit": "Konfiguratu Photoview"
+        "submit": "Konfiguratu fufu.pics"
       },
       "title": "Aurreneko konfigurazioa"
     },
-    "welcome": "Ongi etorri Photoview-ra"
+    "welcome": "Ongi etorri fufu.pics-ra"
   },
   "meta": {
     "description": "Zerbitzari pertsonaletarako argazki-galeria samur eta erabilterreza"
@@ -214,7 +214,7 @@
     },
     "version_info": {
       "build_date_title": "Build-aren data",
-      "title": "Photoview-ren bertsioa",
+      "title": "fufu.pics-ren bertsioa",
       "version_title": "Argitaratze-bertsioa"
     }
   },

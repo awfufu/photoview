@@ -56,11 +56,11 @@
           "label": "Photo path",
           "placeholder": "/path/to/photos"
         },
-        "submit": "Setup Photoview"
+        "submit": "Setup fufu.pics"
       },
       "title": "Initial Setup"
     },
-    "welcome": "Welcome to Photoview"
+    "welcome": "Welcome to fufu.pics"
   },
   "meta": {
     "description": "Simple and User-friendly Photo Gallery for Personal Servers"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Build date",
-      "title": "Photoview Version",
+      "title": "fufu.pics Version",
       "version_title": "Release Version"
     }
   },

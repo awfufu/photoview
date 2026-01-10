@@ -33,7 +33,7 @@ const LogoHeader = () => {
         alt="photoview logo"
       />
       <h1 className="text-3xl text-center mt-4">
-        {t('login_page.welcome', 'Welcome to Photoview')}
+        {t('login_page.welcome', 'Welcome to fufu.pics')}
       </h1>
     </div>
   )
@@ -142,7 +142,7 @@ const LoginPage = () => {
   return (
     <>
       <Helmet>
-        <title>{t('title.login', 'Login')} - Photoview</title>
+        <title>{t('title.login', 'Login')} - fufu.pics</title>
       </Helmet>
       <div>
         <LogoHeader />

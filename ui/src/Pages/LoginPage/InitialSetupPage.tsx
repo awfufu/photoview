@@ -144,7 +144,7 @@ const InitialSetupPage = () => {
             show={!!errorMessage}
           />
           <Submit className="mt-2" disabled={authorizeLoading}>
-            {t('login_page.initial_setup.field.submit', 'Setup Photoview')}
+            {t('login_page.initial_setup.field.submit', 'Setup fufu.pics')}
           </Submit>
         </form>
       </Container>

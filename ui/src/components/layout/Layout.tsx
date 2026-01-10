@@ -25,7 +25,7 @@ const Layout = ({ children, title, ...otherProps }: LayoutProps) => {
   return (
     <>
       <Helmet>
-        <title>{title ? `${title} - Photoview` : `Photoview`}</title>
+        <title>{title ? `${title} - fufu.pics` : `fufu.pics`}</title>
       </Helmet>
       <div className="relative" {...otherProps} data-testid="Layout">
         <Header />
@@ -34,9 +34,8 @@ const Layout = ({ children, title, ...otherProps }: LayoutProps) => {
             <MainMenu />
           </Authorized>
           <div
-            className={`mx-3 my-3 lg:mt-5 lg:mr-8 lg:ml-[292px] ${
-              pinned && sidebarContent ? 'lg:pr-[420px]' : ''
-            }`}
+            className={`mx-3 my-3 lg:mt-5 lg:mr-8 lg:ml-[292px] ${pinned && sidebarContent ? 'lg:pr-[420px]' : ''
+              }`}
             id="layout-content"
           >
             {children}

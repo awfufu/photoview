@@ -56,11 +56,11 @@
           "label": "Путь к фото",
           "placeholder": "/path/to/photos"
         },
-        "submit": "Настроить Photoview"
+        "submit": "Настроить fufu.pics"
       },
       "title": "Первичная настройка"
     },
-    "welcome": "Добро пожаловать в Photoview"
+    "welcome": "Добро пожаловать в fufu.pics"
   },
   "meta": {
     "description": "Простая и Удобная Фото Галерея для Личного Сервера"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Дата сборки",
-      "title": "Версия Photoview",
+      "title": "Версия fufu.pics",
       "version_title": "Версия релиза"
     }
   },

@@ -56,11 +56,11 @@
           "label": "Foto Pfad",
           "placeholder": "/pfad/zu/fotos"
         },
-        "submit": "Photoview einrichten"
+        "submit": "fufu.pics einrichten"
       },
       "title": "Einrichtung"
     },
-    "welcome": "Willkommen zu Photoview"
+    "welcome": "Willkommen zu fufu.pics"
   },
   "meta": {
     "description": "Einfache und nutzerfreundliche Fotogallerie für Homeserver"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Build-Datum",
-      "title": "Photoview Version",
+      "title": "fufu.pics Version",
       "version_title": "Version"
     }
   },

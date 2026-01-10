@@ -56,11 +56,11 @@
           "label": "Percorso foto",
           "placeholder": "/path/to/photos"
         },
-        "submit": "Setup Photoview"
+        "submit": "Setup fufu.pics"
       },
       "title": "Setup iniziale"
     },
-    "welcome": "Benvenuti su Photoview"
+    "welcome": "Benvenuti su fufu.pics"
   },
   "meta": {
     "description": "Galleria fotografica semplice e user-friendly per il tuo server"
@@ -160,8 +160,8 @@
     },
     "user_preferences": {
       "change_language": {
-        "description": "Cambia la lingua di Photoview per questo utente",
-        "label": "Lingua Photoview"
+        "description": "Cambia la lingua di fufu.pics per questo utente",
+        "label": "Lingua fufu.pics"
       },
       "language_selector": {
         "placeholder": "Seleziona lingua"
@@ -220,7 +220,7 @@
     },
     "version_info": {
       "build_date_title": "Data build",
-      "title": "Versione Photoview",
+      "title": "Versione fufu.pics",
       "version_title": "Versione Release"
     }
   },

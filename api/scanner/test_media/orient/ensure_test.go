@@ -15,7 +15,7 @@ func TestMain(m *testing.M) {
 func TestEnsureExifOrient(t *testing.T) {
 	buf := make([]byte, 64*1024)
 
-	et, err := exiftool.NewExiftool(exiftool.NoPrintConversion(), exiftool.Buffer(buf, 64*1024))
+	et, err := exiftool.NewExiftool(exiftool.NoPrintConversion(), exiftool.Buffer(buf, 2*1024*1024))
 	if err != nil {
 		t.Fatalf("create exiftool error: %v", err)
 	}

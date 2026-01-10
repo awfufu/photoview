@@ -56,11 +56,11 @@
           "label": "Шлях до медіафайлів",
           "placeholder": "/шлях/до/медіафайлів"
         },
-        "submit": "Налаштувати Photoview"
+        "submit": "Налаштувати fufu.pics"
       },
       "title": "Початкове налаштування"
     },
-    "welcome": "Ласкаво просимо до Photoview"
+    "welcome": "Ласкаво просимо до fufu.pics"
   },
   "meta": {
     "description": "Проста та зручна фотогалерея для персональних серверів"
@@ -214,7 +214,7 @@
     },
     "version_info": {
       "build_date_title": "Дата збірки",
-      "title": "Версія Photoview",
+      "title": "Версія fufu.pics",
       "version_title": "Версія релізу"
     }
   },
